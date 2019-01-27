@@ -1,4 +1,4 @@
-package com.inigoserrano.sparkWeather;
+package com.rybas.sparkWeather;
 
 public class DatosMeteorologicos {
 

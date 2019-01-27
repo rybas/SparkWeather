@@ -1,4 +1,4 @@
-package com.inigoserrano.sparkWeather;
+package com.rybas.sparkWeather;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -18,13 +18,13 @@ public class SparkWeather05 {
 		datosMeteorologicos = datosMeteorologicos.select("Time", "Indoor_Temperature");
 		datosMeteorologicos = datosMeteorologicos.filter("Indoor_Temperature < 10");
 
-		datosMeteorologicos.write().json("hdfs://localhost:9000/user/iserrano/sparkWeather/");
+		datosMeteorologicos.write().json("hdfs://localhost:9000/user/rybas/sparkWeather/");
 
 		spark.close();
 	}
 
 	private static Dataset<Row> obtenerDatos(final SparkSession sqlContext) {
-		final String path = "/Users/inigo/git/SparkWeatherJava/program/src/main/resources/EasyWeather.txt";
+		final String path = "/Users/osboxes/git/SparkWeatherJava/program/src/main/resources/EasyWeather.txt";
 		final Dataset<Row> datosMeteorologicos = sqlContext.read().format("com.databricks.spark.csv").option("inferSchema", "true")
 				.option("header", "true").option("delimiter", "\t").load(path);
 		return datosMeteorologicos;
